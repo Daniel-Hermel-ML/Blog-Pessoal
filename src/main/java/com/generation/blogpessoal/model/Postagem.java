@@ -1,5 +1,6 @@
 package com.generation.blogpessoal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -15,28 +16,30 @@ public class Postagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(min = 5 , max = 100 , message = "A atributo titulo, no " +
-            "minimo 5 e no maximo 100!")
+    @NotBlank(message = "O Atributo título é Obrigatório!")
+    @Size(min = 5 , max = 100 , message = "A atributo titulo, no minimo 5 e no maximo 100!")
     private String titulo;
 
-    @NotBlank
-    @Size(min = 10 , max = 1000)
+    @NotBlank(message = "O Atributo texto é Obrigatório!")
+    @Size(min = 5 , max = 100 , message = "A atributo texto, no minimo 5 e no maximo 100!")
     private String texto;
 
     @UpdateTimestamp
     private LocalDateTime data;
 
-    public Long getId() {
-        return id;
-    }
+    //chave estrangeira - relação bidirecional
+    @ManyToOne
+    @JsonIgnoreProperties("postagem")
+    private Tema tema; // Essa variavel será foreingkey
+
+    public Long getId() { return this.id; }
 
     public void setId(Long id) {
         this.id = id;
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -44,7 +47,7 @@ public class Postagem {
     }
 
     public String getTexto() {
-        return texto;
+        return this.texto;
     }
 
     public void setTexto(String texto) {
@@ -52,10 +55,14 @@ public class Postagem {
     }
 
     public LocalDateTime getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(LocalDateTime data) {
         this.data = data;
     }
+
+    public Tema getTema() { return tema; }
+
+    public void setTema(Tema tema) { this.tema = tema; }
 }
