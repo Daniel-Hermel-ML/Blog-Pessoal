@@ -30,7 +30,15 @@ public class Postagem {
     //chave estrangeira - relação bidirecional
     @ManyToOne
     @JsonIgnoreProperties("postagem")
-    private Tema tema; // Essa variavel será foreingkey
+    private Tema tema;
+    // Essa variavel será foreingkey
+    //////////////////////////////////////////
+    //chave estrangeira - relação bidirecional
+    @ManyToOne
+    @JsonIgnoreProperties("postagem")
+    private Usuario usuario;
+    // Essa variavel será foreingkey
+
 
     public Long getId() { return this.id; }
 
@@ -65,4 +73,8 @@ public class Postagem {
     public Tema getTema() { return tema; }
 
     public void setTema(Tema tema) { this.tema = tema; }
+
+    public Usuario getUsuario() { return usuario; }
+
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 }
