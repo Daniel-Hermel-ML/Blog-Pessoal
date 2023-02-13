@@ -5,7 +5,6 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.foreign.ValueLayout;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,9 +52,9 @@ public class UsuarioRepositoryTest {
 
         List<Usuario> listaDeUsuarios = usuarioRepository.findAllByNomeContainingIgnoreCase("Silva");
         assertEquals(3, listaDeUsuarios.size());
-        assertEquals(listaDeUsuarios.get(0).getNome().equals("João da Silva"));
-        assertEquals(listaDeUsuarios.get(1).getNome().equals("Manuela da Silva"));
-        assertEquals(listaDeUsuarios.get(2).getNome().equals("Adriana da Silva"));
+        assertTrue(listaDeUsuarios.get(0).getNome().equals("João da Silva"));
+        assertTrue(listaDeUsuarios.get(1).getNome().equals("Manuela da Silva"));
+        assertTrue(listaDeUsuarios.get(2).getNome().equals("Adriana da Silva"));
     }
 
     @AfterAll

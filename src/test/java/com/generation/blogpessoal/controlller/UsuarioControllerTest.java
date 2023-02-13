@@ -1,14 +1,15 @@
 package com.generation.blogpessoal.controlller;
 
 
-import ch.qos.logback.classic.util.LogbackMDCAdapter;
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 import com.generation.blogpessoal.service.UsuarioService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -17,9 +18,10 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.AssertEquals.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UsuarioControllerTest {
 
     @Autowired
@@ -36,7 +38,8 @@ public class UsuarioControllerTest {
 
         usuarioRepository.deleteAll();
 
-        usuarioService.cadastrarUsuario(new Usuario(0L, "Root", "root@root.com", "rootroot", " "));
+        usuarioService.cadastrarUsuario(new Usuario(0L, "Root" +
+                "", "root@root.com", "rootroot", " "));
     }
 
     @Test
@@ -107,8 +110,5 @@ public class UsuarioControllerTest {
 
         assertEquals(HttpStatus.OK, resposta.getStatusCode());
     }
-
-
-
 
 }
