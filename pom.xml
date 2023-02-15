@@ -42,7 +42,7 @@
 		<!-- Na versão 3.0.2 do spring boot do pom
 
 		Na classe SwaggerConfig  OpenApiCustomiser  agora é OpenApiCustomizer
-		@Schema(example = "email@email.com.br")
+
 		-->
 
 		<dependency>
@@ -85,6 +85,13 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- Dependência do Spring Doc -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.9</version>
 		</dependency>
 
 	</dependencies>
