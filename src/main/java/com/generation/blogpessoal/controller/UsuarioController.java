@@ -1,7 +1,7 @@
 package com.generation.blogpessoal.controller;
-
 import java.util.List;
 import java.util.Optional;
+
 
 
 import com.generation.blogpessoal.model.Usuario;
@@ -67,5 +67,4 @@ public class UsuarioController {
                 .map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
-
 }

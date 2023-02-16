@@ -1,5 +1,4 @@
 package com.generation.blogpessoal.service;
-
 import java.nio.charset.Charset;
 import java.util.Optional;
 
@@ -97,5 +96,4 @@ public class UsuarioService {
         return "Basic " + new String(tokenBase64);
 
     }
-
 }

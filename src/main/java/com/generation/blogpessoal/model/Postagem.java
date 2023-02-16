@@ -5,11 +5,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name= "tb_postagens")
+@Table(name = "tb_postagens")
 public class Postagem {
 
     @Id
@@ -17,30 +16,29 @@ public class Postagem {
     private Long id;
 
     @NotBlank(message = "O Atributo título é Obrigatório!")
-    @Size(min = 5 , max = 100 , message = "A atributo titulo, no minimo 5 e no maximo 100!")
+    @Size(min = 5, max = 100, message = "O Atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
     private String titulo;
 
     @NotBlank(message = "O Atributo texto é Obrigatório!")
-    @Size(min = 5 , max = 100 , message = "A atributo texto, no minimo 5 e no maximo 100!")
+    @Size(min = 10, max = 1000, message = "O Atributo texto deve conter no mínimo 10 e no máximo 1000 caracteres")
     private String texto;
 
     @UpdateTimestamp
     private LocalDateTime data;
 
-    //chave estrangeira - relação bidirecional
     @ManyToOne
     @JsonIgnoreProperties("postagem")
     private Tema tema;
-    // Essa variavel será foreingkey
-    //////////////////////////////////////////
-    //chave estrangeira - relação bidirecional
+
     @ManyToOne
     @JsonIgnoreProperties("postagem")
     private Usuario usuario;
-    // Essa variavel será foreingkey
 
+    /*Insira os Getters and Setters*/
 
-    public Long getId() { return this.id; }
+    public Long getId() {
+        return this.id;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -70,11 +68,20 @@ public class Postagem {
         this.data = data;
     }
 
-    public Tema getTema() { return tema; }
+    public Tema getTema() {
+        return this.tema;
+    }
 
-    public void setTema(Tema tema) { this.tema = tema; }
+    public void setTema(Tema tema) {
+        this.tema = tema;
+    }
 
-    public Usuario getUsuario() { return usuario; }
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
 
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
 }

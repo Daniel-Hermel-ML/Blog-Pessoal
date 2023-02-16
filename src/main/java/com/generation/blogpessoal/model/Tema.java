@@ -6,24 +6,23 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-@Entity //relação entidades
-@Table(name = "tb_temas") //criar tabela
+@Entity
+@Table(name = "tb_temas")
 public class Tema {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//anotação para configurar o auto incremente
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "O Atributo Descrição é obrigatório")
     private String descricao;
 
-    //Lista de retorno da chave estrangeira
-    @OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE) //configuração de remoção em cascata
     @JsonIgnoreProperties("tema")
-    private List<Postagem> postagem;
+    private List<Postagem>postagem;
+
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -31,7 +30,7 @@ public class Tema {
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {

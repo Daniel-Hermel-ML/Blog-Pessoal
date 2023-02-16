@@ -15,24 +15,22 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/temas")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin (origins = "*", allowedHeaders = "*")
 public class TemaController {
-
     @Autowired
     private TemaRepository temaRepository;
 
     @GetMapping
-    public ResponseEntity<List<Tema>> getAll(){
+    public ResponseEntity<List<Tema>>getAll(){
         return ResponseEntity.ok(temaRepository.findAll());
-    }
 
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Tema> getById(@PathVariable Long id){
         return temaRepository.findById(id)
                 .map(resposta -> ResponseEntity.ok(resposta))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
-
     @GetMapping("/descricao/{descricao}")
     public ResponseEntity<List<Tema>> getByTitle(@PathVariable
                                                          String descricao){
@@ -64,5 +62,4 @@ public class TemaController {
 
         temaRepository.deleteById(id);
     }
-
 }
